@@ -8,13 +8,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ConnectionDB connectionDB = new ConnectionDB();
-        StatementDB statementDB = new StatementDB();
-        statementDB.getAllCourses();
-
-        DisconnectionDB disconnectionDB = new DisconnectionDB();
-
-
+        new ConnectionDB();
+        StatementDB statement = new StatementDB();
+        statement.AddNewCourse("Java Advanced 2", "2017.01.10", "2017.02.10", 15);
+        statement.getAllCourses();
+        new DisconnectionDB();
 
 
     }
