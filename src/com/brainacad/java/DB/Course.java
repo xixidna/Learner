@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class Course {
 
-    // TEST Method: Add new Course into table "Courses"
+    // Add new Course into table "Course"
     public void addNewCourse(Connection connection, String name, String dateStart, String dateFinish, int days) {
         try {
             connection.setAutoCommit(false);
@@ -22,16 +22,18 @@ public class Course {
                 System.out.println("Insert FALSE, Rollback");
             } finally {
                 connection.commit();
+                System.out.println("New Course is added");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // TEST Method: Get all data from table "Courses"
+    // Get all data from table "Course"
     public void getAllCourses(Statement statement, Connection connection) {
+        ResultSet resultSet = null;
         try {
-            ResultSet resultSet = statement.executeQuery("SELECT * from Course");
+            resultSet = statement.executeQuery("SELECT * from Course");
 
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
@@ -45,39 +47,16 @@ public class Course {
                 }
                 System.out.println();
             }
-            resultSet.close();
-
-    // TEST: output Courses
-//            String query = "SELECT * from Course;";
-//            resultSetMetaData = resultSet.getMetaData();
-//            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-//                resultSet = preparedStatement.executeQuery();
-//                for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
-//                    System.out.print(resultSetMetaData.getColumnName(i) + "\t\t\t");
-//                }
-//                System.out.println();
-//
-//                while (resultSet.next()) {
-//                    for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
-//                        System.out.print(resultSet.getString(i) + "\t\t\t");
-//                    }
-//                    System.out.println();
-//                }
-//            }
-//
-//            while (resultSet.next()){
-//                System.out.println(
-//                            resultSet.getInt(1) + ": " +
-//                            resultSet.getString("name") + ", " +
-//                            resultSet.getString("dateStart") + ", " +
-//                            resultSet.getString("dateFinish") + ", " +
-//                            resultSet.getInt(5));
-//            }
-//
-//            resultSet.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

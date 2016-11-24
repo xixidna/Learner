@@ -1,5 +1,6 @@
 package com.brainacad.java;
 
+import com.brainacad.java.DB.Coach;
 import com.brainacad.java.DB.Course;
 import com.brainacad.java.DB.DBConnect;
 
@@ -18,6 +19,9 @@ public class Main {
         Course course = new Course();
         course.addNewCourse(connection, "Java Advanced 2", "2017.01.10", "2017.02.10", 15);
         course.getAllCourses(statement, connection);
+
+        Coach coach = new Coach();
+        coach.addNewCoach(connection, "Derek", "Zoolander");
 
         dbconnect.closeStatemntDB();
         dbconnect.disconnect();
