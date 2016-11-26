@@ -15,7 +15,7 @@ public class DBConnect {
 
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:LearnerDB.db");
-            System.out.println("Connection established");
+            System.out.println("Connection was established");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -30,7 +30,7 @@ public class DBConnect {
         try {
             if (connection != null) {
                 connection.close();
-                System.out.println("...Connection closed...");
+                System.out.println("...Connection was closed...");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class DBConnect {
     public Statement getStatementDB() {
         try {
             statement = connection.createStatement();
-            System.out.println("Statement created");
+            System.out.println("Statement was created");
         } catch (SQLException e) {
             e.printStackTrace();
         }
